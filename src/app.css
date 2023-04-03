@@ -1,0 +1,8 @@
+:root {
+  --title-color: cadetblue;
+}
+
+h1 {
+  color: var(--title-color);
+  user-select: none;
+}

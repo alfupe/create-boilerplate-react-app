@@ -32,9 +32,9 @@ devServer: {
   port: 3000
 }
 ```
-## Babel
+## Modules
+### Babel
 Allows us to use all ES6 features and having them transpiled down to JS versions that all browsers can understand
-
 We'll parse file types specified in `test` excluding `node_modules` with the appropriate loader
 ```javascript
 module: {
@@ -48,6 +48,33 @@ module: {
 }
 ```
 
+### Styles
+Styles are transformed with basic loaders, i.e., no SASS/LESS postprocessors except postcss, that it's used for autoprefixing 
+```javascript
+{
+  test: /\.css$/,
+  use: ['style-loader', 'css-loader', 'postcss-loader']
+}
+```
+
+NOTE to make postcss work is necessary to install autoprefixer and add it to the config file:
+```javascript
+// postcss.config.js
+module.exports = {
+  plugins: [require('autoprefixer')],
+}
+```
+together with a browserlist config block in `package.json`:
+```json
+// package.json
+"browserslist": [
+  "last 2 version",
+  "not dead",
+  "iOS >= 9"
+]
+```
+
+## Babel
 pass all js files through Babel 
 ```javascript
 resolve: {
@@ -75,5 +102,5 @@ resolve: {
 - [ ] Move items in public to build folder
 - [ ] Manage .env
 - [ ] Check build chunks
-- [ ] Check uglification and minification
-- [ ] Add PostCSS autoprefixer
+- [ ] Check uglyfication and minification
+- [x] Add PostCSS autoprefixer
